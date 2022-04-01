@@ -1,5 +1,8 @@
 # movie_kg
 构建一个电影的知识图谱实例
+
+![img](img.png)
+
 # 0.依赖
 ```commandline
 mysql 8.0
@@ -25,7 +28,12 @@ neo4j 3.5
 ## 0.2.转化数据为`xxx.csv`
 将当前表中的数据导出为`actor.csv`、`genre.csv`、`movie.csv`、`actor_to_movie.csv`、`movie_to_genre.csv`四个文件，方便接下来neo4j加载。
 
+你可以在`数据.xlsx`中方便地查看数据情况，这里最关键的是如何从`actor`和`movie`中梳理构造出`actor_to_movie`和`movie_to_genre`连个关系，同时这两个关系分别都是多对多的关系
 # 2.neo4j构造图数据
+服务器/本地 安装jdk1.8 以及neo4j 3.5。
+
+打开neo4j，然后在浏览器进行数据插入：
+
 ```commandline
 # 1.导入节点：actor、genre、movie 三个数据
 load csv with headers  from "file:///genre.csv" as line create(a:genre{genre_id:line.genre_id,genre_name:line.genre_name})
